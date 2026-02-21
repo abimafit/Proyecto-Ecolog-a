@@ -6,12 +6,48 @@
     <link rel="stylesheet" href="estilos.css">
     <title>¿Qué son las especies invasoras?</title>
 </head>
-<body class="pagina-definicion">
-    <header>
-        <h1>¿Qué son las especies invasoras?</h1>
-    </header>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="50" height="50" viewBox="0 0 100 100">
+                <polygon points="50,20 80,70 20,70" fill="#4caf50"/>
+                <polygon points="60,50 85,80 35,80" fill="#2e7d32"/>
+            </svg>
+            <span class="logo-texto">BioInvasive</span>
+        </div>
 
-    <main>
+        <ul class="nav-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                    Especies 
+                    <span class="arrow">▼</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="pez-leon.html">Pez León</a></li>
+                    <li><a href="caracol-africano.html">Caracol Africano</a></li>
+                    <li><a href="jacinto-agua.html">Jacinto de Agua</a></li>
+                </ul>
+            </li>
+            <li><a href="definicion.html">Definición</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="prevencion.html">Prevención</a></li>
+            <li><a href="ComoLlegan.html">¿Cómo llegan?</a></li>
+        </ul>
+
+
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="pagina-definicion">
+        <h1>¿Qué son las especies invasoras?</h1>
+        
         <p>En Panamá, las especies invasoras como el pez león y diversas hierbas invasoras están afectando gravemente los ecosistemas locales y la biodiversidad.</p>
         
         <section class="contenido-principal">
@@ -45,31 +81,34 @@
             
             <button id="botonAbrir">Diferencias entre especies nativas y no nativas</button>
         </section>
-    </main>
+    </div>
 
-    <!-- Modal -->
+    <!-- MODAL -->
     <div id="miModal" class="modal">
         <div class="contenido-modal">
             <span class="cerrar">&times;</span>
             <h2>Diferencias entre especies nativas y no nativas</h2>
             
             <div class="tipo-especie">
-                <h3>Especie nativa (autóctona)</h3>
+                <h3>🌿 Especie nativa (autóctona)</h3>
                 <p>Es aquella que vive de forma natural en un ecosistema o región, sin intervención humana. Forma parte del equilibrio ecológico y ha evolucionado junto a otras especies del lugar.</p>
                 <p><strong>Ejemplo:</strong> Un árbol propio de los bosques tropicales de Panamá que ha existido allí durante miles de años.</p>
             </div>
             
             <div class="tipo-especie">
-                <h3>Especie no nativa (exótica)</h3>
+                <h3>🌍 Especie no nativa (exótica)</h3>
                 <p>Es aquella que ha sido introducida en un lugar donde no existía naturalmente, ya sea de manera intencional (agricultura, mascotas, ornamentación) o accidental (transporte, comercio). No siempre causa daños, pero puede convertirse en invasora si se reproduce y afecta el ecosistema.</p>
             </div>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <p><a href="index.html">← Volver al inicio</a></p>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script src="nav.js"></script>
     <script src="Definicion.js"></script>
 </body>
 </html>
