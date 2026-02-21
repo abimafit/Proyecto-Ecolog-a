@@ -1,11 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
     <title>¿Qué son las especies invasoras?</title>
 </head>
-<body>
-    
+<body class="pagina-definicion">
+    <header>
+        <h1>¿Qué son las especies invasoras?</h1>
+    </header>
+
+    <main>
+        <p>En Panamá, las especies invasoras como el pez león y diversas hierbas invasoras están afectando gravemente los ecosistemas locales y la biodiversidad.</p>
+        
+        <section class="contenido-principal">
+            <div class="seccion-info">
+                <div class="texto">
+                    <p>Las especies invasoras son organismos (animales, plantas, hongos o microorganismos) que son introducidos, de manera intencional o accidental, en un ecosistema distinto al de su origen natural y que logran establecerse, reproducirse y expandirse, causando impactos negativos en el medio ambiente, la economía o la salud humana.</p>
+                </div>
+                <img src="https://www.nationalgeographic.com.es/medio/2023/03/09/sus-vivos-colores-sirven-de-advertencia-a-posibles-depredadores_def6fea6_%20Sus%20vivos%20colores%20sirven%20de%20advertencia%20a%20posibles%20depredadores_230309174404_2000x1333.jpg" alt="Pez León" width="300" height="250">
+            </div>
+
+            <p>A diferencia de las especies nativas, las invasoras suelen no tener depredadores naturales en el nuevo entorno, lo que les permite multiplicarse rápidamente y competir con las especies locales por alimento, espacio y recursos. Esto puede provocar la disminución o incluso la extinción de especies autóctonas, alteraciones en los ecosistemas y pérdidas económicas en sectores como la agricultura, la pesca o el turismo.</p>   
+            
+            <div class="seccion-info">
+                <div class="texto"> 
+                    <p>Algunos ejemplos conocidos en Panamá incluyen el Caracol gigante africano, que afecta la agricultura y puede representar un riesgo para la salud humana, y el Jacinto de agua, que invade ríos y lagos, bloqueando la luz solar y reduciendo el oxígeno disponible para otras especies acuáticas.</p>
+                </div>        
+                <img src="https://farallonesdelcitara.bioexploradores.com/wp-content/uploads/2022/12/IMG_4109-2-1200x900.jpg" alt="Caracol gigante africano" width="300" height="250">
+            </div>
+            
+            <div class="seccion-info">
+                <div class="texto">
+                    <p>Comprender qué son las especies invasoras es fundamental para promover su prevención, control y manejo responsable, protegiendo así la biodiversidad y el equilibrio de los ecosistemas.</p>
+                </div>        
+                <img src="https://todoviveros.com/wp-content/uploads/2021/03/Jacintos-de-Agua-3.jpg" alt="Jacinto de agua" width="300" height="250">
+            </div>
+        </section>
+
+        <section class="seccion-especies-exoticas">
+            <h2>Especie exótica</h2>
+            <p>Una especie exótica es aquella que se encuentra fuera de su área de distribución natural debido a la intervención humana, ya sea de forma intencional (por ejemplo, para agricultura, jardinería o comercio) o accidental (transporte, viajes, intercambio comercial). No todas las especies exóticas causan daño; muchas pueden adaptarse sin generar impactos negativos significativos.</p>
+            
+            <button id="botonAbrir">Diferencias entre especies nativas y no nativas</button>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="miModal" class="modal">
+        <div class="contenido-modal">
+            <span class="cerrar">&times;</span>
+            <h2>Diferencias entre especies nativas y no nativas</h2>
+            
+            <div class="tipo-especie">
+                <h3>Especie nativa (autóctona)</h3>
+                <p>Es aquella que vive de forma natural en un ecosistema o región, sin intervención humana. Forma parte del equilibrio ecológico y ha evolucionado junto a otras especies del lugar.</p>
+                <p><strong>Ejemplo:</strong> Un árbol propio de los bosques tropicales de Panamá que ha existido allí durante miles de años.</p>
+            </div>
+            
+            <div class="tipo-especie">
+                <h3>Especie no nativa (exótica)</h3>
+                <p>Es aquella que ha sido introducida en un lugar donde no existía naturalmente, ya sea de manera intencional (agricultura, mascotas, ornamentación) o accidental (transporte, comercio). No siempre causa daños, pero puede convertirse en invasora si se reproduce y afecta el ecosistema.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">← Volver al inicio</a></p>
+    </footer>
+
+    <script src="Definicion.js"></script>
 </body>
 </html>
