@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Como llegan?</title>
+    <link rel="stylesheet" href="estilos-nav.css">
+    <title>Especies Invasoras - Panamá</title>
 </head>
 <body>
-    
+    <!-- Barra de navegación superior -->
+    <nav class="navbar">
+        <!-- Logo con texto -->
+        <div class="logo">
+            <img src="logo-montaña.png" alt="Logo">
+            <span class="logo-texto">Invasivo</span>
+        </div>
+
+        <!-- Menú de navegación -->
+        <ul class="nav-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                    Especies 
+                    <span class="arrow">▼</span>
+                </a>
+                <!-- Submenú desplegable -->
+                <ul class="dropdown-menu">
+                    <li><a href="pez-leon.html">Pez León</a></li>
+                    <li><a href="caracol-africano.html">Caracol Africano</a></li>
+                    <li><a href="jacinto-agua.html">Jacinto de Agua</a></li>
+                </ul>
+            </li>
+            <li><a href="definicion.html">Definición</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="prevencion.html">Prevención</a></li>
+            <li><a href="ComoLlegan.html">como llegan?</a></li>
+        </ul>
+        <!-- Botón hamburguesa para móviles -->
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Contenido de la página -->
+    <main>
+        <h1>Bienvenido a la página de Especies Invasoras</h1>
+        <p>Contenido de tu página aquí...</p>
+    </main>
+
+    <script src="nav.js"></script>
 </body>
 </html>
