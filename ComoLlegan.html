@@ -3,52 +3,673 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos-nav.css">
-    <title>Especies Invasoras - Panamá</title>
+    <title>¿Cómo llegan? - BioInvasive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-oscuro: #1a3a1f;
+            --verde-medio: #2e7d32;
+            --verde-vivo: #4caf50;
+            --verde-claro: #a5d6a7;
+            --crema: #f5f0e8;
+            --naranja: #e65100;
+            --dorado: #f9a825;
+            --texto: #1c2b1e;
+            --gris: #5a6b5c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--crema);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--verde-oscuro);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            height: 68px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+        }
+
+        .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
+        .logo-texto { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--verde-vivo); letter-spacing: .04em; }
+
+        .nav-menu { list-style: none; display: flex; align-items: center; gap: .2rem; }
+        .nav-menu a {
+            color: #c8e6c9;
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 600;
+            padding: .45rem .85rem;
+            border-radius: 4px;
+            transition: background .2s, color .2s;
+            letter-spacing: .03em;
+        }
+        .nav-menu a:hover { background: rgba(76,175,80,.15); color: var(--verde-vivo); }
+
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--verde-oscuro);
+            border: 1px solid rgba(76,175,80,.25);
+            border-radius: 6px;
+            min-width: 180px;
+            overflow: hidden;
+        }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu li a { display: block; border-radius: 0; padding: .6rem 1rem; }
+
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--verde-vivo); border-radius: 2px; }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            background: var(--verde-oscuro);
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 80% at 80% 50%, rgba(76,175,80,.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(46,125,50,.2) 0%, transparent 60%);
+        }
+
+        /* decorative leaf shapes */
+        .hero-leaf {
+            position: absolute;
+            opacity: .07;
+            font-size: 18rem;
+            line-height: 1;
+            right: -2rem;
+            top: -2rem;
+            user-select: none;
+        }
+        .hero-leaf2 {
+            position: absolute;
+            opacity: .05;
+            font-size: 10rem;
+            bottom: -1rem;
+            left: 4rem;
+            user-select: none;
+            transform: rotate(40deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 5rem 3rem 4rem;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(76,175,80,.2);
+            border: 1px solid rgba(76,175,80,.4);
+            color: var(--verde-vivo);
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: .35rem .85rem;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 span { color: var(--verde-vivo); }
+
+        .hero p {
+            color: #a5d6a7;
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* ─── SECTION LAYOUTS ─── */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            background: var(--verde-oscuro);
+            box-shadow: 0 4px 16px rgba(0,0,0,.15);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.95rem;
+            color: var(--verde-oscuro);
+            margin-bottom: .4rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            color: var(--gris);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* divider */
+        .divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(76,175,80,.35), transparent);
+            margin: 0;
+        }
+
+        /* ─── TRAFICO: impact grid ─── */
+        .impact-intro {
+            background: var(--verde-oscuro);
+            color: #e8f5e9;
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            line-height: 1.75;
+            position: relative;
+            overflow: hidden;
+        }
+        .impact-intro::after {
+            content: '🌿';
+            position: absolute;
+            right: 1.5rem;
+            bottom: -1rem;
+            font-size: 5rem;
+            opacity: .1;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .impact-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.4rem 1.2rem;
+            border-left: 4px solid var(--verde-vivo);
+            box-shadow: 0 2px 12px rgba(0,0,0,.06);
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--texto);
+            transition: transform .2s, box-shadow .2s;
+            counter-increment: impact;
+        }
+
+        .impact-card::before {
+            content: counter(impact) ".";
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--verde-vivo);
+            margin-bottom: .3rem;
+        }
+
+        .impact-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+
+        .counter-reset { counter-reset: impact; }
+
+        .org-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .org-badge {
+            background: var(--verde-oscuro);
+            color: var(--verde-claro);
+            font-weight: 700;
+            font-size: .85rem;
+            letter-spacing: .06em;
+            padding: .5rem 1.2rem;
+            border-radius: 30px;
+        }
+
+        .note-box {
+            background: rgba(76,175,80,.08);
+            border: 1px solid rgba(76,175,80,.25);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            font-size: .95rem;
+            color: var(--gris);
+            line-height: 1.7;
+            margin-top: 1.2rem;
+        }
+
+        /* ─── MASCOTAS ─── */
+        .bg-light { background: #edf7ee; }
+
+        .pet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pet-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,.07);
+            transition: transform .25s;
+        }
+
+        .pet-card:hover { transform: translateY(-4px); }
+
+        .pet-card-header {
+            padding: 1.5rem 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid #e8f5e9;
+        }
+
+        .pet-emoji { font-size: 2.4rem; }
+
+        .pet-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--verde-oscuro);
+        }
+
+        .pet-card-body {
+            padding: 1.2rem 1.5rem 1.5rem;
+            font-size: .95rem;
+            color: var(--gris);
+            line-height: 1.7;
+        }
+
+        /* ─── PUERTOS ─── */
+        .ports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .port-card {
+            background: var(--verde-oscuro);
+            color: #e8f5e9;
+            border-radius: 14px;
+            padding: 1.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .port-card::before {
+            content: attr(data-icon);
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2.5rem;
+            opacity: .15;
+        }
+
+        .port-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: .8rem;
+            color: var(--verde-vivo);
+        }
+
+        .port-card p { font-size: .9rem; line-height: 1.65; opacity: .85; }
+
+        /* ─── CLIMA ─── */
+        .climate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .climate-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 1.6rem;
+            border-top: 3px solid var(--dorado);
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+
+        .climate-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--verde-oscuro);
+            margin-bottom: .7rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .climate-card p { font-size: .9rem; color: var(--gris); line-height: 1.65; }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: var(--verde-oscuro);
+            color: #a5d6a7;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo-texto { color: var(--verde-vivo); }
+        .footer-brand p { margin-top: .8rem; font-size: .9rem; opacity: .75; }
+
+        .footer h4 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: .5rem; }
+        .footer ul li a { color: #a5d6a7; text-decoration: none; font-size: .9rem; opacity: .8; transition: opacity .2s; }
+        .footer ul li a:hover { opacity: 1; color: var(--verde-vivo); }
+
+        .footer-contact p { font-size: .9rem; opacity: .75; margin-bottom: .3rem; }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(76,175,80,.2);
+            text-align: center;
+            font-size: .8rem;
+            opacity: .5;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--verde-oscuro); padding: 1rem; }
+            .nav-menu.open { display: flex; }
+            .hamburger { display: flex; }
+            .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero-content { padding: 3rem 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Barra de navegación superior -->
-    <nav class="navbar">
-        <!-- Logo con texto -->
-        <div class="logo">
-            <img src="logo-montaña.png" alt="Logo">
-            <span class="logo-texto">Invasivo</span>
+
+<!-- ══════ NAVBAR ══════ -->
+<nav class="navbar">
+    <a class="logo" href="index.html">
+        <svg width="46" height="46" viewBox="0 0 100 100">
+            <polygon points="50,20 80,70 20,70" fill="#4caf50"/>
+            <polygon points="60,50 85,80 35,80" fill="#2e7d32"/>
+        </svg>
+        <span class="logo-texto">BioInvasive</span>
+    </a>
+
+    <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Inicio</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Especies <span class="arrow">▼</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="pez-leon.html">Pez León</a></li>
+                <li><a href="caracol-africano.html">Caracol Africano</a></li>
+                <li><a href="jacinto-agua.html">Jacinto de Agua</a></li>
+            </ul>
+        </li>
+        <li><a href="definicion.html">Definición</a></li>
+        <li><a href="impacto.html">Impacto</a></li>
+        <li><a href="prevencion.html">Prevención</a></li>
+        <li><a href="ComoLlegan.html">¿Cómo llegan?</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+    <div class="hero-leaf">🌿</div>
+    <div class="hero-leaf2">🍃</div>
+    <div class="hero-content">
+        <span class="hero-tag">Panamá · Biodiversidad</span>
+        <h1>¿Cómo llegan las<br><span>especies invasoras</span><br>a Panamá?</h1>
+        <p>Las especies invasoras llegan principalmente a través de actividades humanas — el comercio, el turismo y la falta de controles fronterizos — generando un impacto profundo en los ecosistemas panameños.</p>
+    </div>
+</section>
+
+<!-- ══════ 1. TRÁFICO DE ESPECIES ══════ -->
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">🚫</div>
+        <div>
+            <h2 class="section-title">Tráfico de Especies</h2>
+            <p class="section-subtitle">Una de las actividades ilícitas más lucrativas del mundo</p>
+        </div>
+    </div>
+
+    <div class="impact-intro">
+        El tráfico de especies es la captura, transporte, venta o intercambio <strong>ilegal</strong> de animales y plantas silvestres — vivos o muertos — así como de sus partes (pieles, colmillos, madera, huevos, etc.). Panamá, uno de los países más biodiversos de América Central, es un punto vulnerable por su posición geográfica estratégica, que facilita el tránsito de especies hacia otros países.
+    </div>
+
+    <div class="impact-grid counter-reset">
+        <div class="impact-card">Pérdida de biodiversidad</div>
+        <div class="impact-card">Desequilibrio ecológico</div>
+        <div class="impact-card">Impacto económico</div>
+        <div class="impact-card">Riesgos sanitarios</div>
+        <div class="impact-card">Aumento del crimen organizado</div>
+    </div>
+
+    <div class="org-row">
+        <span class="org-badge">MiAMBIENTE</span>
+        <span class="org-badge">CITES</span>
+    </div>
+
+    <div class="note-box">
+        La clínica veterinaria del Ministerio de Ambiente ha atendido a más de <strong>750 animales</strong> víctimas del tráfico ilegal, con el objetivo de devolverlos a su hábitat natural. El tráfico de especies requiere cooperación internacional a través de la Convención sobre el Comercio Internacional de Especies Amenazadas (<strong>CITES</strong>).
+    </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════ 2. LIBERACIÓN DE MASCOTAS ══════ -->
+<div class="bg-light">
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">🦎</div>
+            <div>
+                <h2 class="section-title">Liberación de Mascotas Exóticas</h2>
+                <p class="section-subtitle">Cuando un animal doméstico se convierte en una amenaza para el ecosistema</p>
+            </div>
         </div>
 
-        <!-- Menú de navegación -->
-        <ul class="nav-menu">
-            <li><a href="index.html">Inicio</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle">
-                    Especies 
-                    <span class="arrow">▼</span>
-                </a>
-                <!-- Submenú desplegable -->
-                <ul class="dropdown-menu">
-                    <li><a href="pez-leon.html">Pez León</a></li>
-                    <li><a href="caracol-africano.html">Caracol Africano</a></li>
-                    <li><a href="jacinto-agua.html">Jacinto de Agua</a></li>
-                </ul>
-            </li>
-            <li><a href="definicion.html">Definición</a></li>
-            <li><a href="impacto.html">Impacto</a></li>
-            <li><a href="prevencion.html">Prevención</a></li>
-            <li><a href="ComoLlegan.html">como llegan?</a></li>
-        </ul>
-        <!-- Botón hamburguesa para móviles -->
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </nav>
+        <p style="margin-bottom:2rem;color:var(--gris);line-height:1.75;">La liberación de mascotas exóticas ocurre cuando una persona deja en libertad a un animal adquirido como mascota que no pertenece naturalmente al ecosistema. En Panamá, esta práctica puede generar graves impactos ambientales dado que el país posee ecosistemas extraordinariamente delicados.</p>
 
-    <!-- Contenido de la página -->
-    <main>
-        <h1>Bienvenido a la página de Especies Invasoras</h1>
-        <p>Contenido de tu página aquí...</p>
-    </main>
+        <div class="pet-grid">
+            <div class="pet-card">
+                <div class="pet-card-header">
+                    <span class="pet-emoji">🐢</span>
+                    <span class="pet-name">Tortuga de orejas rojas</span>
+                </div>
+                <div class="pet-card-body">Es vendida comúnmente como mascota. Cuando crece y requiere más espacio, algunas personas la liberan en ríos y lagos panameños, donde <strong>compite con tortugas nativas</strong> por alimento y espacio.</div>
+            </div>
+            <div class="pet-card">
+                <div class="pet-card-header">
+                    <span class="pet-emoji">🦎</span>
+                    <span class="pet-name">Iguana verde</span>
+                </div>
+                <div class="pet-card-body">Aunque nativa en algunas zonas, su liberación fuera de su hábitat natural o en exceso puede <strong>alterar el equilibrio ecológico</strong> y afectar cultivos o especies locales.</div>
+            </div>
+            <div class="pet-card">
+                <div class="pet-card-header">
+                    <span class="pet-emoji">🦜</span>
+                    <span class="pet-name">Loro frente blanca</span>
+                </div>
+                <div class="pet-card-body">Los loros criados en cautiverio pueden tener dificultad para sobrevivir al ser liberados, <strong>transmitir enfermedades</strong> a poblaciones silvestres o alterar las dinámicas naturales.</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="nav.js"></script>
+<hr class="divider">
+
+<!-- ══════ 3. FALTA DE CONTROL EN PUERTOS ══════ -->
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">🚢</div>
+        <div>
+            <h2 class="section-title">Falta de Control en Puertos y Fronteras</h2>
+            <p class="section-subtitle">La conectividad de Panamá es su mayor fortaleza y su mayor vulnerabilidad</p>
+        </div>
+    </div>
+
+    <p style="margin-bottom:2rem;color:var(--gris);line-height:1.75;">Por su ubicación estratégica y alta conectividad marítima y terrestre, los puntos fronterizos y portuarios son clave para prevenir el tráfico ilegal. La falta de inspección suficiente abre brechas que las redes de comercio ilegal aprovechan.</p>
+
+    <div class="ports-grid">
+        <div class="port-card" data-icon="⚓">
+            <h3>Puerto de Balboa</h3>
+            <p>El alto volumen de contenedores puede dificultar la revisión exhaustiva, permitiendo el ocultamiento de especies silvestres en cargas comerciales.</p>
+        </div>
+        <div class="port-card" data-icon="🌲">
+            <h3>Tapón del Darién</h3>
+            <p>En la frontera con Colombia, la densa selva y el acceso limitado facilitan el tránsito ilegal de fauna y flora sin ningún tipo de control.</p>
+        </div>
+        <div class="port-card" data-icon="✈️">
+            <h3>Aeropuerto de Tocumen</h3>
+            <p>Sin inspecciones rigurosas, pueden transportarse animales pequeños, reptiles o aves escondidos en el equipaje de pasajeros.</p>
+        </div>
+        <div class="port-card" data-icon="🚢">
+            <h3>Transbordos internacionales</h3>
+            <p>El movimiento constante de carga internacional a través del Canal permite que envíos en tránsito pasen sin revisión profunda.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════ 4. CAMBIO CLIMÁTICO ══════ -->
+<div class="bg-light">
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">🌡️</div>
+            <div>
+                <h2 class="section-title">El Cambio Climático Favorece su Expansión</h2>
+                <p class="section-subtitle">Un ambiente en transformación que allana el camino a las invasoras</p>
+            </div>
+        </div>
+
+        <p style="margin-bottom:2rem;color:var(--gris);line-height:1.75;">El cambio climático — la alteración prolongada de temperaturas y patrones climáticos causada por gases de efecto invernadero — modifica los ecosistemas creando condiciones más propicias para que las especies invasoras sobrevivan y se expandan en Panamá.</p>
+
+        <div class="climate-grid">
+            <div class="climate-card">
+                <h3>🌡️ Aumento de temperaturas</h3>
+                <p>Reptiles e insectos exóticos se adaptan mejor a climas cálidos. Con temperaturas más altas, pueden expandirse a zonas donde antes no sobrevivían.</p>
+            </div>
+            <div class="climate-card">
+                <h3>🌊 Alteración de ecosistemas</h3>
+                <p>Sequías, inundaciones y cambios en los bosques debilitan a las especies nativas, facilitando que las especies introducidas ocupen su espacio.</p>
+            </div>
+            <div class="climate-card">
+                <h3>🦋 Migración forzada</h3>
+                <p>Cambios en lluvias y disponibilidad de alimento obligan a animales a desplazarse, aumentando el contacto entre especies nativas y exóticas.</p>
+            </div>
+            <div class="climate-card">
+                <h3>🌿 Mayor vulnerabilidad</h3>
+                <p>Panamá, al ser megadiverso, enfrenta un riesgo mayor cuando sus ecosistemas pierden estabilidad, facilitando la propagación de invasoras.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <div class="logo">
+                <svg width="36" height="36" viewBox="0 0 100 100">
+                    <polygon points="50,20 80,70 20,70" fill="#4caf50"/>
+                    <polygon points="60,50 85,80 35,80" fill="#2e7d32"/>
+                </svg>
+                <span class="logo-texto">BioInvasive</span>
+            </div>
+            <p>Informando a los panameños sobre la biodiversidad y las especies invasoras.</p>
+            <p style="margin-top:.5rem;font-size:.85rem;opacity:.55;">(507) 456-2817 · bioinvasive@gmail.com</p>
+        </div>
+        <div>
+            <h4>Compañía</h4>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="definicion.html">Definición</a></li>
+                <li><a href="ComoLlegan.html">¿Cómo llegan?</a></li>
+                <li><a href="impacto.html">Impacto</a></li>
+                <li><a href="prevencion.html">Prevención</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="#">Centro de Ayuda</a></li>
+                <li><a href="#">Política de Privacidad</a></li>
+                <li><a href="#">Términos de Servicio</a></li>
+                <li><a href="#">API Acceso</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 BioInvasive — Página Web Panameña · Todos los derechos reservados
+    </div>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    hamburger.addEventListener('click', () => navMenu.classList.toggle('open'));
+</script>
 </body>
 </html>
