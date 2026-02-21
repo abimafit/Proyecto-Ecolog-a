@@ -1,32 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto de Ecología</title>
     <link rel="stylesheet" href="estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Especies Invasoras en Panamá</title>
 </head>
 <body>
-    <header>
-        <h1>Especies Invasoras en Panamá</h1>
-    </header>
-    <ul>
-        <li><a href="Definicion.html">¿Qué son las especies invasoras?</a></li>
-        <li><a href="ComoLlegan.html">¿Cómo llegan las especies invasoras a Panamá?</a></li>
-        <li>Principales especies invasoras en Panamá</li>
-        <li>Impactos de las especies invasoras</li>
-        <li>Casos de estudio en Panamá</li>
-        <li>¿Cómo prevenir y controlar las especies invasoras?</li>
-        <li>Conclusión</li>
-    </ul>
-    <footer>
-        <ul>
-            <li>Recursos y referencias</li>
-            <ul>
-                <li>Instituciones ambientales</li>
-                <li>Material educativo</li>
-            </ul>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="50" height="50" viewBox="0 0 100 100">
+                <polygon points="50,20 80,70 20,70" fill="#4caf50"/>
+                <polygon points="60,50 85,80 35,80" fill="#2e7d32"/>
+            </svg>
+            <span class="logo-texto">BioInvasion</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                    Especies 
+                    <span class="arrow">▼</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="pez-leon.html">Pez León</a></li>
+                    <li><a href="caracol-africano.html">Caracol Africano</a></li>
+                    <li><a href="jacinto-agua.html">Jacinto de Agua</a></li>
+                </ul>
+            </li>
+            <li><a href="definicion.html">Definición</a></li>
+            <li><a href="impacto.html">Impacto</a></li>
+            <li><a href="liberacion-mascotas.html">Prevención</a></li>
+            <li><a href="ComoLlegan.html">¿Cómo llegan?</a></li>
         </ul>
+
+        
+
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Especies Invasoras</span>
+                <span class="title-line">en Panamá</span>
+            </h1>
+            <p class="hero-subtitle">Descubre cómo estas especies amenazan nuestros ecosistemas y qué podemos hacer al respecto</p>
+            <a href="#contenido" class="btn-hero">Explorar</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Desliza</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- INTRO SECTION -->
+    <section class="intro-section" id="contenido">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h2 class="section-title">Un problema invisible con consecuencias reales</h2>
+                    <p>Las especies invasoras representan una de las mayores amenazas para la biodiversidad de Panamá. Estos organismos, introducidos fuera de su hábitat natural, alteran ecosistemas completos y ponen en riesgo especies nativas que han evolucionado durante milenios.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Especies invasoras identificadas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">40%</div>
+                            <div class="stat-label">De especies en peligro afectadas</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://www.nationalgeographic.com.es/medio/2023/03/09/sus-vivos-colores-sirven-de-advertencia-a-posibles-depredadores_def6fea6_%20Sus%20vivos%20colores%20sirven%20de%20advertencia%20a%20posibles%20depredadores_230309174404_2000x1333.jpg" alt="Pez León">
+                    <div class="image-caption">Pez León - Una de las especies invasoras más peligrosas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOPICS GRID -->
+    <section class="topics-section">
+        <div class="container">
+            <h2 class="section-title-center">Explora los temas</h2>
+            
+            <div class="topics-grid">
+                <!-- Card 1 -->
+                <article class="topic-card" data-color="emerald">
+                    <div class="card-number">01</div>
+                    <div class="card-icon">🔍</div>
+                    <h3>Introducción</h3>
+                    <p>Conoce qué son las especies invasoras y por qué representan una amenaza para nuestros ecosistemas.</p>
+                    <a href="definicion.html" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="topic-card" data-color="teal">
+                    <div class="card-number">02</div>
+                    <div class="card-icon">🚢</div>
+                    <h3>¿Cómo llegan las especies invasoras a Panamá?</h3>
+                    <p>Descubre las diferentes vías por las cuales estas especies llegan a nuestro territorio.</p>
+                    <a href="ComoLlegan.html" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="topic-card" data-color="forest">
+                    <div class="card-number">03</div>
+                    <div class="card-icon">🐾</div>
+                    <h3>Principales especies invasoras en Panamá</h3>
+                    <p>Conoce las especies invasoras más comunes y peligrosas que habitan en nuestro país.</p>
+                    <a href="#especies" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="topic-card" data-color="sage">
+                    <div class="card-number">04</div>
+                    <div class="card-icon">💥</div>
+                    <h3>Impactos de las especies invasoras</h3>
+                    <p>Explora las consecuencias ambientales, económicas y sociales de estas especies.</p>
+                    <a href="impacto.html" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="topic-card" data-color="mint">
+                    <div class="card-number">05</div>
+                    <div class="card-icon">🐢</div>
+                    <h3>Casos de estudio en Panamá</h3>
+                    <p>Análisis detallado de casos reales y sus impactos en nuestros ecosistemas.</p>
+                    <a href="#casos" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="topic-card" data-color="jade">
+                    <div class="card-number">06</div>
+                    <div class="card-icon">🛡️</div>
+                    <h3>¿Cómo prevenir y controlar las especies invasoras?</h3>
+                    <p>Aprende qué medidas podemos tomar para proteger nuestros ecosistemas.</p>
+                    <a href="liberacion-mascotas.html" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 7 -->
+                <article class="topic-card" data-color="emerald">
+                    <div class="card-number">07</div>
+                    <div class="card-icon">📚</div>
+                    <h3>Recursos y referencias</h3>
+                    <p>Consulta fuentes confiables e instituciones ambientales para más información.</p>
+                    <a href="#recursos" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 8 -->
+                <article class="topic-card" data-color="teal">
+                    <div class="card-number">08</div>
+                    <div class="card-icon">🎓</div>
+                    <h3>Material educativo</h3>
+                    <p>Accede a recursos didácticos sobre especies invasoras para estudiantes y educadores.</p>
+                    <a href="#material" class="card-link">Leer más →</a>
+                </article>
+
+                <!-- Card 9 -->
+                <article class="topic-card" data-color="forest">
+                    <div class="card-number">09</div>
+                    <div class="card-icon">✅</div>
+                    <h3>Conclusión</h3>
+                    <p>Reflexiones finales sobre la importancia de proteger nuestra biodiversidad.</p>
+                    <a href="#conclusion" class="card-link">Leer más →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100">
+                            <polygon points="50,20 80,70 20,70" fill="#4caf50"/>
+                            <polygon points="60,50 85,80 35,80" fill="#2e7d32"/>
+                        </svg>
+                        <span class="logo-texto">Invasivo</span>
+                    </div>
+                    <p>Protegiendo la biodiversidad de Panamá</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="definicion.html">Definición</a></li>
+                        <li><a href="ComoLlegan.html">¿Cómo llegan?</a></li>
+                        <li><a href="impacto.html">Impacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Proyecto Educativo</h4>
+                    <p>Especies Invasoras en Panamá</p>
+                    <p>© 2026 - Todos los derechos reservados</p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <script src="nav.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
